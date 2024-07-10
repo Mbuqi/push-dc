@@ -16,11 +16,7 @@ waktu1 = int(input("Set Waktu Hapus Pesan: "))
 waktu2 = int(input("Set Waktu Kirim Pesan: "))
 
 time.sleep(1)
-print("3")
-time.sleep(1)
-print("2")
-time.sleep(1)
-print("1")
+print("START")
 time.sleep(1)
 
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -43,7 +39,7 @@ while True:
         }
 
         r = requests.post(f"https://discord.com/api/v9/channels/{channel_id}/messages", data=payload, headers=headers)
-        print(Fore.WHITE + "Sent message: ")
+        print(Fore.BLUE + "Sent message: ")
         print(Fore.YELLOW + payload['content'])
 
         response = requests.get(f'https://discord.com/api/v9/channels/{channel_id}/messages', headers=headers)
