@@ -1,64 +1,26 @@
 import requests
-import random
 import time
 import os
 from colorama import Fore
 
-author = "mbuqi"
-print("Author: " + author)
-script = "Push Rank Discord"
-print("Script: " + script)
-
-time.sleep(1)
-
 channel_id = input("Masukkan ID channel: ")
-waktu1 = int(input("Set Waktu Hapus Pesan: "))
-waktu2 = int(input("Set Waktu Kirim Pesan: "))
+waktu1 = int(input("Set Kirim Pesan: "))
 
 time.sleep(1)
-print("START")
+print("MULAI")
 time.sleep(1)
 
-os.system('cls' if os.name == 'nt' else 'clear')
-
-with open("pesan.txt", "r") as f:
-    words = f.readlines()
-
-with open("token.txt", "r") as f:
-    authorization = f.readline().strip()
-
-while True:
-        channel_id = channel_id.strip()
-
-        payload = {
-            'content': random.choice(words).strip()
-        }
-
-        headers = {
-            'Authorization': authorization
-        }
-
-        r = requests.post(f"https://discord.com/api/v9/channels/{channel_id}/messages", data=payload, headers=headers)
+payload = {
+         "content" : """⛔ALERTA⛔ALERTA⛔
+✅CHEAP STOCK 100K SSP  <:Arrow:850540193626193941> AT VII23✅
+✅CHEAP STOCK 100K SSP  <:Arrow:850540193626193941> AT VII23✅
+✅CHEAP STOCK 100K SSP  <:Arrow:850540193626193941> AT VII23✅"""
+}
+headers = {
+          "Authorization" : "OTg0NDY3MzY0NzQ3ODI5MjQ4.GVOQ19.gjkcSLuR_RsB-j41Pcsfh6E_qVlLP0tpVE5uS0"
+}
+r = requests.post(f"https://discord.com/api/v9/channels/{channel_id}/messages", data=payload, headers=headers)
         print(Fore.BLUE + "Sent message: ")
         print(Fore.YELLOW + payload['content'])
-
-        response = requests.get(f'https://discord.com/api/v9/channels/{channel_id}/messages', headers=headers)
-
-        if response.status_code == 200:
-            messages = response.json()
-            if len(messages) == 0:
-                is_running = False
-                break
-            else:
-                time.sleep(waktu1)
-
-                message_id = messages[0]['id']
-                response = requests.delete(f'https://discord.com/api/v9/channels/{channel_id}/messages/{message_id}', headers=headers)
-                if response.status_code == 204:
-                    print(Fore.GREEN + f'Pesan dengan ID {message_id} berhasil dihapus')
-                else:
-                    print(Fore.RED + f'Gagal menghapus pesan dengan ID {message_id}: {response.status_code}')
-        else:
-            print(f'Gagal mendapatkan pesan di channel: {response.status_code}')
-
-        time.sleep(waktu2)
+else:
+time.sleep(waktu1)
