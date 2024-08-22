@@ -31,7 +31,7 @@ while True:
         channel_id = channel_id.strip()
 
         payload = {
-            'content': words
+            'content': random.choice(words).strip()
         }
 
         headers = {
